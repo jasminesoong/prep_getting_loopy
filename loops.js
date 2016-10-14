@@ -8,28 +8,66 @@ Within the _FOR_ loop, use `console.log` to:
 - Log the value of `i`. Use a message like `Value of i is: ` and append the value of `i` to this String
 - Log what is at index `i` in the array. Use a message like `Value at Index is: ` and append the value stored within the Array at that index.*/
 
+var presidents = ["Washington", "Adams", "Jefferson", "Madison", "Monroe"];
+
+for(var i = 0; i<presidents.length; i++){ /*.length = the quantity within that array, number of items.*/
+	console.log('Value of i is: ' + presidents[i]);
+	console.log('Value at Index is: ' + i);
+}
+
 /***bonus:** could you take the code inside of this FOR loop and encapsulate it inside of a function called `printContent` and still achieve the same result? This new function should accept two parameters.*/
 
-
-
-
+function printContent(names){
+	for(var i = 0; i<names.length; i++){
+		console.log('Value of i is: ' + names[i]);
+		console.log('Value at Index is: ' + i)
+	}
+	return names;
+}
+console.log(printContent(presidents))
 
 /*Declare a variable named `stringOfNumbers` and set it's value to `''` (an empty String).*/
 
 /*Then write a _FOR_ loop that appends a Number value to that string starting from `10` all the way up to and including `20`.*/
 
+var stringOfNumbers = ''; /*if variable was equal to a number (ex. 0) it would take all the numbers in the loop and create the sum.*/
 
+for(var i = 10; i<=20; i++){
+	stringOfNumbers += i; /*use += because you are adding an reassigning a new number to a string within a loop*/
+}
+console.log(stringOfNumbers)
 
 /***bonus:** could you take the code inside of this _FOR_ loop and encapsulate it inside of a function called `appendToString` and still achieve the same result?*/
 
+function appendToString(){
+	var stringOfNumbers = '';
+	for(var i = 10; i<=20; i++){
+	stringOfNumbers += i;
+	}
+	console.log(stringOfNumbers)
+}
+appendToString();
 
-
-/*## `Add only even numbrs to an array`
+/*## `Add only even numbers to an array`
 Declare a variable named `evenNumberArray`.
 
 Use a _FOR_ loop to add only even numbers to an Array. Add `50` even numbers to the `evenNumberArray` starting with the value `0`.*/
 
-  
+var evenNumberArray = [];
+
+for(var i = 0; i<=100; i+=2){
+	evenNumberArray.push(i); /*use (i) vs. [i] because .push is a function*/
+}
+console.log(evenNumberArray);
+
+var oddNumberArray = [];
+
+for (var i = 0; oddNumberArray.length<=50; i++){
+	if (i%2 === 1){ /*used for odd numbers since 1 will be the remainder for odd numbers.*/
+		oddNumberArray.push(i);
+	}
+}
+console.log(oddNumberArray)
 
 /*## `Accessing only the odd indexes of an Array - 'Not Even Brah'`
 Someone forgot to fill out this array! Oh noes...
@@ -43,6 +81,14 @@ Example result should look like:
 ```javascript
 `[ 'turn' , 'nope' , 'down' , 'nope' , 'for' , 'nope' , 'what' ]`*/
 
+var oopsArray = ['turn', , 'down', , 'for', , 'what'];
+
+for (var i = 0; i<oopsArray.length; i++){
+	if(i%2===1){
+		oopsArray[i] = 'nope'; /*wouldn't use the .push method otherwise it will be added to the end of the array.*/
+	}
+}
+console.log(oopsArray);
 
 
 /*## `Going backwards?!`
@@ -59,8 +105,18 @@ nope
 turn
 ```*/
 
+var backwardsOopsArray = [];
 
+for (var i = oopsArray.length - 1; i>=0; i--){ /*it is "oopsArray.length - 1" because it is using the 0 based index while .length only refers to the number of items in the index.*/
+	backwardsOopsArray.push(oopsArray[i]);
+}
 
+console.log(backwardsOopsArray);
+
+for (var i = oopsArray.length - 1; i>=0; i--){
+	oopsArray.reverse(i);
+}
+console.log(oopsArray);
 
 /*## `isNapTime`
 Declare a variable named `isNapTime`. Set it to `false`
@@ -75,7 +131,21 @@ Declare a function named `nap`. This function takes in a single parameter called
 Now, Write a FOR loop that iterates through the `napSchedule` array and runs the function `nap` while passing in the value at the current position of `napSchedule` into the `nap` function.*/
 
 
+var isNapTime = false;
+var napSchedule = [false, false, true, false, true, true];
 
+function nap(schedule){
+	if (schedule === true){
+		console.log("ZzZzZzZz");
+	}
+	else {
+		console.log('Gotta get to work!')
+		isNapTime = true;
+	}
+}
+for (var i = 0; i<napSchedule.length; i++){
+	nap(napSchedule[i]);
+}
 
 /*Declare a variable named `valuesArray` and set it's value to be an array, `[99, 66, 829, 1941, 8, 76]`.
 
@@ -83,7 +153,13 @@ Declare a function named `copyArray` which takes two arguments: `originArray` an
 
 To get started, below your function declaration, call your function and pass in the two variables, `valuesArray` and `copyOfValuesArray`. After that, use `console.log` to to inspect the values of `valuesArray` and `copyOfValuesArray` to make sure they have the same values (which means your function worked!).*/
 
+var valuesArray = [99, 66, 829, 1941, 8, 76];
 
+function copyArray(originArray, destinationArray){
+	for (var i = 0; i<valuesArray.length; i++){
+		destinationArray.push[i]
+	}
+}
 
 
 
@@ -99,9 +175,9 @@ It's that time again, we need to graduate the current class of students and star
 
 Declare a variable named `currentClass` and set it's value to be this [array found here](https://gist.github.com/sgnl/e40879b2249e06ca7811).
 
-Declare a function named `graduateAndSetNewClass`, it takes a single argument called `class`.
+Declare a function named `graduateAndSetNewClass`, it takes a single argument called `classX`.
 
-Your function will iterate through the `class` argument and check each student's `enrolled` property.
+Your function will iterate through the `classX` argument and check each student's `enrolled` property.
 
 If the `enrolled` property is set to `true` then change that student's `graduated` property to `true`. Otherwise, if `enrolled` is set to `false` then change `enrolled` to `true` leaving `graduated` alone and unchanged.
 */
